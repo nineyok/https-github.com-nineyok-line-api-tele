@@ -700,6 +700,7 @@ if($strchk[0]=="#"){
     }
   }
 }
+}
 
 $arrPostData = array();
 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
