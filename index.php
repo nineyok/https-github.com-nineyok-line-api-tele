@@ -704,9 +704,7 @@ if($strchk[0]=="#"){
   $arrstr  = explode( "h" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
       $strchk = "h".$arrstr[$k];
-      $idcard = substr($strchk,1);
-      $chkid = substr($idcard,0,13);
-	     if ($idcard != "") {             	
+             	
 		$txt = "";
 		$txt = "*ตามด้วย 13 หลัก เช็คหน้าตาม ทร 14" . "\r\n"
                     . "#ตามด้วย 13 หลัก เช็คหมายจับในระบบ PDC" . "\r\n"
@@ -720,7 +718,7 @@ if($strchk[0]=="#"){
                       $arrPostData["status"] = $status;
                       array_push($arrayloop,$arrPostData);
  
-    }
+
   }
 }
 
