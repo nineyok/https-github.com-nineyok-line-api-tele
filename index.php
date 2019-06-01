@@ -700,10 +700,10 @@ if($strchk[0]=="#"){
     }
   }
 }
-}else if($strchk[0]=="help"){
-  $arrstr  = explode( "help" , $strexp );
+}else if($strchk[0]=="h"){
+  $arrstr  = explode( "h" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
-      $strchk = "help".$arrstr[$k];
+      $strchk = "h".$arrstr[$k];
       $idcard = substr($strchk,1);
       $chkid = substr($idcard,0,13);
 	     if ($idcard != "") {             	
