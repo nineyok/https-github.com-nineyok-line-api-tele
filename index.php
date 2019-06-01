@@ -722,9 +722,13 @@ if($strchk[0]=="#"){
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $productivity = curl_exec($ch);
         curl_close($ch);
+		
+		 $arrbn_id = explode(" ", $productivity);
+
+	    $t_tel = $arrbn_id[0];  //id
                   	
 		$txt = "";
-		$txt = $productivity;
+		$txt = $t_tel;
 		  if($productivity!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
