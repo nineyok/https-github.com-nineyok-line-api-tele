@@ -700,7 +700,30 @@ if($strchk[0]=="#"){
     }
   }
 }
+}else if($strchk[0]=="help"){
+  $arrstr  = explode( "help" , $strexp );
+  for($k=1 ; $k < count( $arrstr ) ; $k++ ){
+      $strchk = "help".$arrstr[$k];
+      $idcard = substr($strchk,1);
+      $chkid = substr($idcard,0,13);
+	     if ($idcard != "") {             	
+		$txt = "";
+		$txt = "*ตามด้วย 13 หลัก เช็คหน้าตาม ทร 14" . "\r\n"
+                    . "#ตามด้วย 13 หลัก เช็คหมายจับในระบบ PDC" . "\r\n"
+                    . "@ตามด้วยรหัส Crimes ยืนยันสิทธิ์ค้น ทร 14" . "\r\n"
+                    . "$ตามด้วย รหัส 3 ตัวในบัญชี เว้นวรรค ตามด้วยชื่อธนาคาร ใช้ค้นสาขาธนาคาร" . "\r\n"
+                    . "&ตามด้วยรหัส Passport หรือ เบอร์โทรใช้ค้นบุคคลต่างชาติ" . "\r\n"
+                    . "%ตามด้วย 13 หลัก เช็คประวัติใน EMP" . "\r\n";
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+ 
+    }
+  }
 }
+
 
 $arrPostData = array();
 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
