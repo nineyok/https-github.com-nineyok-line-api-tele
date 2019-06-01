@@ -701,6 +701,55 @@ if($strchk[0]=="#"){
     }
   }
 }
+}else if($strchk[0]=="!"){
+  $arrstr  = explode( "!" , $strexp );
+  for($k=1 ; $k < count( $arrstr ) ; $k++ ){
+      $strchk = "!".$arrstr[$k];
+      $idcard = substr($strchk,1);
+      $chkid = substr($idcard,0,10);
+	   if(is_numeric($chkid)){
+              $countid = strlen($chkid);
+              if($countid == "10"){
+                $idcard = $chkid;
+              }
+            }
+	  if(is_numeric($idcard)){
+	     if ($idcard != "") {
+                   $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/run_ussd.php?uid=".$idcard ;
+                   $isRequestHeader = FALSE;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $productivity = curl_exec($ch);
+        curl_close($ch);
+                  	
+		$txt = "";
+		$txt = $productivity;
+		  if($arrbn_id[1]!=""){
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+                  }else{
+                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = "0";
+                      array_push($arrayloop,$arrPostData);
+                  }
+    }
+  }else{
+                  $arrPostData = array();
+                  $arrPostData["idcard"] = $idcard;
+                  $arrPostData["detail"] = "หมายเลขโทรศัพท์ไม่ถูกต้อง : ".$idcard;
+                  $arrPostData["status"] = "0";
+                  array_push($arrayloop,$arrPostData);
+              }
+  }
+}
 }else if($strchk[0]=="H"){
   $arrstr  = explode( "H" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
@@ -712,7 +761,8 @@ if($strchk[0]=="#"){
                     . "'@'ตามด้วยรหัส Crimes ยืนยันสิทธิ์ค้น ทร 14" . "\r\n"
                     . "'$'ตามด้วย ชื่อธนาคาร เว้นวรรค รหัส 3 ตัวในบัญชี ใช้ค้นสาขาธนาคาร" . "\r\n"
                     . "'&'ตามด้วยรหัส Passport หรือ เบอร์โทรใช้ค้นบุคคลต่างชาติ" . "\r\n"
-                    . "'%'ตามด้วย 13 หลัก เช็คประวัติใน EMP";
+                    . "'%'ตามด้วย 13 หลัก เช็คประวัติใน EMP" . "\r\n"
+					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ";
 					
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
