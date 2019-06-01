@@ -749,7 +749,6 @@ if($strchk[0]=="#"){
                   array_push($arrayloop,$arrPostData);
               }
   }
-}
 }else if($strchk[0]=="H"){
   $arrstr  = explode( "H" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
