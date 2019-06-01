@@ -725,7 +725,7 @@ if($strchk[0]=="#"){
                   	
 		$txt = "";
 		$txt = $productivity;
-		  if($arrbn_id[1]!=""){
+		  if($productivity!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
