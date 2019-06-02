@@ -20,6 +20,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
 //C75d1acd2a65e031632f656fb0aba51b2  นางรอง
 //C6f6cec58173d7b991df098147b7c8bea  ตม แม่กลอง
 //Cd0678ea6fb9c9f8ab883c8a7d4e831d6  GEN Y GROP
+//Cf17ed72a653dc113adb69c3902819596  เดินทางอากาศ
 
 //_Y2hBzrTGtxkNdYTFIdwSHxFjUC_mX0b9vz-fM44
 
@@ -34,7 +35,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
    } */
    $id = $arrJson['events'][0]['source']['groupId'];
    
-   //if ($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") {
+   if (($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") or ($id == "Cf17ed72a653dc113adb69c3902819596")) {
 	     
       //$strexp = "#1229900480178,FT-2536 fds5g45df4g5";
 $strchk = str_split($strexp);
@@ -759,10 +760,10 @@ if($strchk[0]=="#"){
 		$txt = "'*'ตามด้วย 13 หลัก เช็คหน้าตาม ทร 14" . "\r\n"
                     . "'#'ตามด้วย 13 หลัก เช็คหมายจับในระบบ PDC" . "\r\n"
                     . "'@'ตามด้วยรหัส Crimes ยืนยันสิทธิ์ค้น ทร 14" . "\r\n"
-                    . "'$'ตามด้วย ชื่อธนาคาร เว้นวรรค รหัส 3 ตัวในบัญชี ใช้ค้นสาขาธนาคาร" . "\r\n"
+                    . "'$'ตามด้วย ชื่อธนาคาร เว้นวรรค รหัส 3 ตัวหน้าในบัญชี ใช้ค้นสาขาธนาคาร" . "\r\n"
                     . "'&'ตามด้วยรหัส Passport หรือ เบอร์โทรใช้ค้นบุคคลต่างชาติ" . "\r\n"
                     . "'%'ตามด้วย 13 หลัก เช็คประวัติใน EMP" . "\r\n"
-					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ".$id;
+					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ";
 					
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
@@ -832,7 +833,7 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
- 		 //}
+ 		 }
 
 function checkPID($pid) {
    if(strlen($pid) != 13) return false;
