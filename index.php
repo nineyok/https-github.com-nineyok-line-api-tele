@@ -34,7 +34,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
    } */
    $id = $arrJson['events'][0]['source']['groupId'];
    
-   if ($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") {
+   //if ($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") {
 	     
       //$strexp = "#1229900480178,FT-2536 fds5g45df4g5";
 $strchk = str_split($strexp);
@@ -762,7 +762,7 @@ if($strchk[0]=="#"){
                     . "'$'ตามด้วย ชื่อธนาคาร เว้นวรรค รหัส 3 ตัวในบัญชี ใช้ค้นสาขาธนาคาร" . "\r\n"
                     . "'&'ตามด้วยรหัส Passport หรือ เบอร์โทรใช้ค้นบุคคลต่างชาติ" . "\r\n"
                     . "'%'ตามด้วย 13 หลัก เช็คประวัติใน EMP" . "\r\n"
-					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ";
+					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ".$id;
 					
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
@@ -832,7 +832,7 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
- 		 }
+ 		 //}
 
 function checkPID($pid) {
    if(strlen($pid) != 13) return false;
