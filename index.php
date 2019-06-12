@@ -751,6 +751,85 @@ if($strchk[0]=="#"){
                   array_push($arrayloop,$arrPostData);
               }
   }
+}else if($strchk[0]=="+"){
+  $arrstr  = explode( "+" , $strexp );
+  for($k=1 ; $k < count( $arrstr ) ; $k++ ){
+      $strchk = "+".$arrstr[$k];
+      $idcard = substr($strchk,1);
+      $chkid = substr($idcard,0,10);
+	   if(is_numeric($chkid)){
+              $countid = strlen($chkid);
+              if($countid == "10"){
+                $idcard = $chkid;
+              }
+            }
+	  if(is_numeric($idcard)){
+	     if ($idcard != "") {
+     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/selecttel.php?uid=".$idcard;	 
+     $isRequestHeader = FALSE;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $productivity = curl_exec($ch);
+        curl_close($ch);
+        //$json_a = json_decode($productivity, true);
+        $arrbn_id = explode("#", $productivity);
+        //print_r($arrbn_id);
+//        if (is_numeric(substr($arrbn_id[0], 0, 1))) {
+
+//        echo $objResult["customer_name"];
+//        echo "#" . $objResult["Latitude"];
+//        echo "#" . $objResult["Longitude"];
+//        echo "#" . $objResult["province"];
+//        echo "#" . $objResult["contact_tel"];
+
+
+
+        $Mobile_Number = $arrbn_id[0]; //เบอร์โทร
+	    $Service_Type = $arrbn_id[1]; //เครือข่าย
+        $Start_date = $arrbn_id[2]; // วันที่
+		$Real_Service_Amount = $arrbn_id[3];  //จำนวนเงิน
+        $Topup_Name = substr($arrbn_id[4], 2); // รหัสตู้
+		$customer_name = $arrbn_id[5]; // ชื่อ
+		$latitude = $arrbn_id[6]; // lat
+		$longitude = $arrbn_id[7]; // lon
+        $addresscustomer = $arrbn_id[8]; // ที่อยู่		
+       
+		
+		$txt = "";
+		$txt = "เบอร์โทร : ". $Mobile_Number . "\r\n"
+		        . "จำนวน : " . $Real_Service_Amount . "  บาท" ."\r\n"
+                . "เครือข่าย : " . $Service_Type . "\r\n"
+				. "เติมล่าสุด : " . $Start_date . "\r\n"
+                . "รหัส : " . $Topup_Name . "\r\n"
+				. "ชื่อ : " . $customer_name . "\r\n"
+                . "ที่อยู่ : " . $addresscustomer . "\r\n"
+                . "พิกัด : https://www.google.co.th/maps/place/".$latitude.",".$longitude;
+		
+		  if($Topup_Name!=""){
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+                  }else{
+                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = "0";
+                      array_push($arrayloop,$arrPostData);
+                  }
+    }
+  }else{
+                  $arrPostData = array();
+                  $arrPostData["idcard"] = $idcard;
+                  $arrPostData["detail"] = "ไม่พบข้อมูล : ".$idcard;
+                  $arrPostData["status"] = "0";
+                  array_push($arrayloop,$arrPostData);
+              }
+  }
 }else if($strchk[0]=="H"){
   $arrstr  = explode( "H" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
@@ -763,6 +842,7 @@ if($strchk[0]=="#"){
                     . "'$'ตามด้วย ชื่อธนาคาร เว้นวรรค รหัส 3 ตัวหน้าในบัญชี ใช้ค้นสาขาธนาคาร" . "\r\n"
                     . "'&'ตามด้วยรหัส Passport หรือ เบอร์โทรใช้ค้นบุคคลต่างชาติ" . "\r\n"
                     . "'%'ตามด้วย 13 หลัก เช็คประวัติใน EMP" . "\r\n"
+					. "'+'ตามด้วยหมายเลขโทรศัพท์ เช็คการเติมเงิน" . "\r\n"
 					. "'!'ตามด้วยหมายเลขโทรศัพท์ เช็คเครือข่าย มือถือ";
 					
                       $arrPostData = array();
