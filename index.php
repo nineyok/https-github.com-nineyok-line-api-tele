@@ -1,5 +1,5 @@
 <?php
-$strAccessToken="YYSE5/Ldw3NQK+BSwR4fVnqy4zEgv7Ol1m5omDqChOOUiTxveG8Yj4TClIEA+Fd6NyaiSrU6bH7ljOb6AAFZq8qJFcKjva6HYbAZD/GSdz2wh6JHpexYjwCA9/RcyOEmpUR2uqh5NC5dWH0VhKNodAdB04t89/1O/w1cDnyilFU=";
+$strAccessToken="dKA62Up6lhBzZ3uekJ6BnZ4C0A+tCmusjCcBEZtV55xTC/FkydgsFJxKH0fIBCznebTQviq+2LdcuAlF60C1QVpiPsp6a7c8mIzsELQ7ofr9Es6Oim8QN7nlX/4OHApVmgeLldlwukAsYh5TEmD3zQdB04t89/1O/w1cDnyilFU=";
 $hostname_condb="localhost";
 $username_condb="kitsadac";
 $password_conndb="55zc56sCHd";
@@ -35,7 +35,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
    } */
    $id = $arrJson['events'][0]['source']['groupId'];
    
-   //if (($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") or ($id == "Cf17ed72a653dc113adb69c3902819596")) {
+   if (($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") or ($id == "Cf17ed72a653dc113adb69c3902819596")) {
 	     
       //$strexp = "#1229900480178,FT-2536 fds5g45df4g5";
 $strchk = str_split($strexp);
@@ -913,7 +913,7 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
- 		 //}
+ 		 }
 
 function checkPID($pid) {
    if(strlen($pid) != 13) return false;
