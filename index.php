@@ -35,7 +35,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
    } */
    $id = $arrJson['events'][0]['source']['groupId'];
    
-   if (($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") or ($id == "Cf17ed72a653dc113adb69c3902819596")) {
+   //if (($id == "Cd0678ea6fb9c9f8ab883c8a7d4e831d6") or ($id == "Cf17ed72a653dc113adb69c3902819596")) {
 	     
       //$strexp = "#1229900480178,FT-2536 fds5g45df4g5";
 $strchk = str_split($strexp);
@@ -913,7 +913,7 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
- 		 }
+ 		 //}
 
 function checkPID($pid) {
    if(strlen($pid) != 13) return false;
